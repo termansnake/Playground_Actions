@@ -28,7 +28,7 @@ jobs:
         run: echo "Hello, World!"
 
       - name: Print repo name
-        run: echo ${{ github.repository }}
+        run: ls
 
       - name: Print GitHub variable
         run: echo "${{ toJson(github) }}"
