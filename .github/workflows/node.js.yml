@@ -25,8 +25,6 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: 'Pass-List-App/app/package.json, Pass-List-App/app/yarn.lock'
     - run: npm ci
       working-directory: Pass-List-App/app
     - run: npm run build --if-present
