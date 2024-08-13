@@ -26,7 +26,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        working-directory: Pass-List-App/app
+        node-version-file: 'Pass-List-App/app/package.json'
     
     - run: npm ci
       working-directory: Pass-List-App/app
