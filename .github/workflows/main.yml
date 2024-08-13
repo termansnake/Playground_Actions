@@ -20,9 +20,15 @@ jobs:
       # Primer paso: Checkout del código del repositorio.
       # Esta acción obtiene el código fuente del repositorio para que esté disponible en la máquina.
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       # Segundo paso: Imprimir "Hello, World!" en la consola.
       # Aquí simplemente ejecutamos un comando de shell que imprime "Hello, World!".
       - name: Run Hello World Script
         run: echo "Hello, World!"
+
+      - name: Print repo name
+        run: echo github.repository
+
+      - name: Print GitHub variable
+        run: echo github
