@@ -28,7 +28,7 @@ jobs:
         run: echo "Hello, World!"
 
       - name: Print repo name
-        run: echo github.repository
+        run: echo ${{ github.repository }}
 
       - name: Print GitHub variable
-        run: echo github
+        run: echo ${{ github }}
