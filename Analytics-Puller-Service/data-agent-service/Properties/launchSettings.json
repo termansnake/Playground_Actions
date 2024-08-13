@@ -1,0 +1,19 @@
+﻿{
+  "profiles": {
+    "data_agent_service": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development",
+        "AZURE_DEVOPS_ORGANIZATION": "OXXOSWD",
+        "AZURE_DEVOPS_ORGANIZATION_PAT": "",
+        "ELASTICSEARCH_CLOUDID": "",
+        "ELASTICSEARCH_APIKEY": "",
+        "COSMOSKEY": "",
+        "COSMOSURL": "https://cosmosmetrics.documents.azure.com:443/",
+        "COSMOSBDNAME": "KPIS_BD",
+        "COSMOSCONTAINER": "devops.oxxo.cfd"
+      }
+    }
+  }
+}

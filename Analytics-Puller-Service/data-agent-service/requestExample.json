@@ -1,0 +1,66 @@
+{
+  "@odata.context": "https://analytics.dev.azure.com/OXXOSWD/_odata/v4.0-preview/$metadata#WorkItemBoardSnapshot(Area(AreaPath),Project(ProjectName),Team(TeamName),Iteration(IterationPath,StartDate,EndDate,IterationName),WorkItemId,WorkItemType,State,StateCategory,DateValue,CompletedDate,Count,StoryPoints)",
+  "value": [
+    {
+      "@odata.id": null,
+      "CompletedDate": null,
+      "DateValue": "2023-09-25T00:00:00-06:00",
+      "StateCategory": "Proposed",
+      "State": "To Do",
+      "WorkItemType": "User Story",
+      "WorkItemId": 1631,
+      "StoryPoints": null,
+      "Count": 1,
+      "Iteration": {
+        "@odata.id": null,
+        "IterationName": "I18094-TI02 Autocobro 2.0",
+        "EndDate": null,
+        "StartDate": null,
+        "IterationPath": "I18094-TI02 Autocobro 2.0"
+      },
+      "Team": {
+        "@odata.id": null,
+        "TeamName": "I18094-TI02 Autocobro 2.0 Team"
+      },
+      "Project": {
+        "@odata.id": null,
+        "ProjectName": "I18094-TI02 Autocobro 2.0"
+      },
+      "Area": {
+        "@odata.id": null,
+        "AreaPath": "I18094-TI02 Autocobro 2.0"
+      }
+    },
+    {
+      "@odata.id": null,
+      "CompletedDate": null,
+      "DateValue": "2023-09-26T00:00:00-06:00",
+      "StateCategory": "Proposed",
+      "State": "To Do",
+      "WorkItemType": "User Story",
+      "WorkItemId": 1631,
+      "StoryPoints": null,
+      "Count": 1,
+      "Iteration": {
+        "@odata.id": null,
+        "IterationName": "I18094-TI02 Autocobro 2.0",
+        "EndDate": null,
+        "StartDate": null,
+        "IterationPath": "I18094-TI02 Autocobro 2.0"
+      },
+      "Team": {
+        "@odata.id": null,
+        "TeamName": "I18094-TI02 Autocobro 2.0 Team"
+      },
+      "Project": {
+        "@odata.id": null,
+        "ProjectName": "I18094-TI02 Autocobro 2.0"
+      },
+      "Area": {
+        "@odata.id": null,
+        "AreaPath": "I18094-TI02 Autocobro 2.0"
+      }
+    }
+  ],
+  "@odata.nextLink": "https://analytics.dev.azure.com/OXXOSWD/_odata/v4.0-preview/WorkItemBoardSnapshot?$apply=filter%28WorkItemType%20eq%20%27User%20Story%27%29%2Fgroupby%28%28Area%2FAreaPath%2CProject%2FProjectName%2CTeam%2FTeamName%2CIteration%2FIterationPath%2CIteration%2FStartDate%2CIteration%2FEndDate%2CIteration%2FIterationName%2CWorkItemId%2CWorkItemType%2CState%2CStateCategory%2CDateValue%2CCompletedDate%29%2Caggregate%28%24count%20as%20Count%2CStoryPoints%20with%20sum%20as%20StoryPoints%29%29&$skip=10000"
+}

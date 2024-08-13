@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-agent-deployment
+  namespace: kpis-namespace
+  labels:
+    app: data-agent-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-agent-service
+  template:
+    metadata:
+      labels:
+        app: data-agent-service
+    spec:
+      containers:
+      - name: data-agent-service
+        image: data-agent-service:${buildVersion}
+        #volumeMounts:
+        #- name: resources
+        #  mountPath: /app/Resources
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: DOTNET_ENVIRONMENT
+          value: Development
+        - name: AZURE_DEVOPS_ORGANIZATION
+          valueFrom:
+            secretKeyRef:
+              name: azure-devops-credentials
+              key: ORGANIZATION
+        - name: AZURE_DEVOPS_ORGANIZATION_PAT
+          valueFrom:
+            secretKeyRef:
+              name: azure-devops-credentials
+              key: ORGANIZATION_PAT
+        - name: COSMOSKEY
+          valueFrom:
+            secretKeyRef:
+              name: cosmos-credentials
+              key: COSMOS_KEY
+        - name: COSMOSURL
+          valueFrom:
+            secretKeyRef:
+              name: cosmos-credentials
+              key: COSMOS_URL
+        - name: COSMOSBDNAME
+          valueFrom:
+            secretKeyRef:
+              name: cosmos-credentials
+              key: COSMOSBD_NAME
+        - name: COSMOSCONTAINER
+          valueFrom:
+            secretKeyRef:
+              name: cosmos-credentials
+              key: COSMOS_CONTAINER
+      terminationGracePeriodSeconds: 90
+      imagePullSecrets:
+      - name: secretnexus
+      #volumes:
+       #- name: resources
+         #hostPath:
+          #path: /Data/data-agent-configs
+---

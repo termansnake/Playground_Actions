@@ -1,0 +1,9 @@
+﻿global using data_agent_service;
+global using Elasticsearch.Net;
+global using Microsoft.Extensions.Options;
+global using Nest;
+global using System.Net.Http.Headers;
+global using System.Net.Http.Json;
+global using System.Text.Json.Serialization;
+global using Microsoft.Azure.Cosmos;
+global using Newtonsoft.Json;

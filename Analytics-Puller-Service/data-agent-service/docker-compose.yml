@@ -1,0 +1,14 @@
+version: '3'
+services:
+  data-agent-service:
+    image: data-agent-service:3.0
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - AZURE_DEVOPS_ORGANIZATION=OXXOSWD
+      - AZURE_DEVOPS_ORGANIZATION_PAT=
+      - COSMOSKEY=
+      - COSMOSURL=https://cosmos-metrics-terraform-01.documents.azure.com:443/
+      - COSMOSBDNAME=KPIS_BD
+      - COSMOSCONTAINER=devops.oxxo.cfd
+    #volumes:
+     # - C:\Data:/app/Resources
