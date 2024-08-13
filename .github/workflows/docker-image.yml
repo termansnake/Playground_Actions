@@ -14,6 +14,14 @@ jobs:
     - name: Build the Docker image
       run: |
           cd Pass-List-App
-          docker build . --file dockerFile_2 --tag axity-app:$(date +%s)
+          docker build . --file dockerFile_2 --tag students.azurecr.io/axity-app:$(date +%s)
     - name: Check 4 Image
       run: docker images
+      
+    - name: Push Image to ACR
+      uses: julioarruda/pushimagetoregistry@v1
+      with:
+        acr-tokenname: token-access
+        acr-token: bP3ih5XtpZ+hnFS//RlOHJBMbspr/U15r7dKyL/0If+ACRCrJW6U
+        acr-account: students.azurecr.io
+        acr-imagename: students.azurecr.io/axity-app:$(date +%s)
