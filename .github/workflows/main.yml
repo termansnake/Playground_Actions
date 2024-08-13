@@ -31,4 +31,21 @@ jobs:
         run: ls
 
       - name: Print GitHub variable
-        run: echo "${{ toJson(github) }}"
+        run: |
+          # Buscar todos los archivos .tf en el repositorio
+          find . -name "*.tf" > tf_files.txt
+          
+          # Mostrar la lista de archivos encontrados
+          echo "Archivos .tf encontrados:"
+          cat tf_files.txt
+          
+          # Contar los recursos diferentes de Terraform
+          resource_count=$(grep -oh -E 'resource "(.*?)"' $(cat tf_files.txt) | sort | uniq -c)
+          
+          echo "Conteo de recursos de Terraform:"
+          echo "$resource_count"
+          
+          # Contar el número total de tipos de recursos diferentes
+          unique_resource_types=$(grep -oh -E 'resource "(.*?)"' $(cat tf_files.txt) | sort | uniq | wc -l)
+          
+          echo "Número total de tipos de recursos diferentes: $unique_resource_types"
