@@ -31,5 +31,5 @@ jobs:
       working-directory: Pass-List-App/app
     - run: npm run build --if-present
       working-directory: Pass-List-App/app
-    - run: npm test
+    - run: sudo npm test
       working-directory: Pass-List-App/app
