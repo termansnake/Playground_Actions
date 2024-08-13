@@ -1,0 +1,28 @@
+# Nombre del workflow. Este es el nombre que verás en la pestaña de Actions en GitHub.
+name: Hello World Workflow
+
+# 'on' define los eventos que desencadenan la ejecución del workflow.
+# En este caso, el workflow se ejecutará solo cuando se active manualmente.
+on: 
+  workflow_dispatch:  # Este evento permite ejecutar el workflow de forma manual.
+
+# 'jobs' define los trabajos que se ejecutarán como parte de este workflow.
+jobs:
+  say-hello:  # Nombre del job.
+  
+    # 'runs-on' define el tipo de runner (máquina) que ejecutará este job.
+    # Aquí usamos 'ubuntu-latest', que es una máquina virtual con Ubuntu.
+    runs-on: ubuntu-latest
+    
+    # 'steps' define los pasos que se ejecutarán dentro de este job.
+    steps:
+    
+      # Primer paso: Checkout del código del repositorio.
+      # Esta acción obtiene el código fuente del repositorio para que esté disponible en la máquina.
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      # Segundo paso: Imprimir "Hello, World!" en la consola.
+      # Aquí simplemente ejecutamos un comando de shell que imprime "Hello, World!".
+      - name: Run Hello World Script
+        run: echo "Hello, World!"
