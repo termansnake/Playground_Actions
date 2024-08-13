@@ -8,10 +8,12 @@ on:
     branches: [ "master" ]
     paths:
       - 'Pass-List-App/**'
+      - '.github/workflows/node.js.yml'
   pull_request:
     branches: [ "master" ]
     paths:
       - 'Pass-List-App/**'
+      - '.github/workflows/node.js.yml'
 
 jobs:
   Build_App_And_Test:
