@@ -33,3 +33,5 @@ jobs:
       working-directory: Pass-List-App/app
     - run: sudo npm test
       working-directory: Pass-List-App/app
+    - run: yarn jest --coverage
+      working-directory: Pass-List-App/app
