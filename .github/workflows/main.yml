@@ -47,10 +47,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Create file from environment variable
+        run: |
+          # Tomar el contenido de la variable de entorno y guardarlo en un archivo
+          echo "Número total de tipos de recursos diferentes: ${{ env.UNIQUE_RESOURCE_TYPES }}" > unique_resource_types.txt
+
       - name: Zip the results
         run: |
           # Crear un archivo ZIP con el resultado del análisis
-          zip terraform_analysis.zip resource_count.txt
+          zip terraform_analysis.zip unique_resource_types.txt
           
       - name: Upload artifact
         uses: actions/upload-artifact@v3
