@@ -31,7 +31,7 @@ test('it can store and retrieve items', async () => {
 
 test('it can update an existing item', async () => {
     await db.init();
-
+    await db.removeItem(ITEM.id);
     const initialItems = await db.getItems();
     expect(initialItems.length).toBe(0);
 
@@ -49,6 +49,7 @@ test('it can update an existing item', async () => {
 
 test('it can remove an existing item', async () => {
     await db.init();
+    await db.removeItem(ITEM.id);
     await db.storeItem(ITEM);
 
     await db.removeItem(ITEM.id);
@@ -59,6 +60,7 @@ test('it can remove an existing item', async () => {
 
 test('it can get a single item', async () => {
     await db.init();
+    await db.removeItem(ITEM.id);
     await db.storeItem(ITEM);
 
     const item = await db.getItem(ITEM.id);
