@@ -33,6 +33,6 @@ jobs:
       working-directory: Pass-List-App/app
     - run: sudo npm test
       working-directory: Pass-List-App/app
-    - run: yarn test folder/name --coverage --coverageDirectory='coverage'
+    - run: yarn test --coverage --coverageDirectory='coverage'
       working-directory: Pass-List-App/app
  
