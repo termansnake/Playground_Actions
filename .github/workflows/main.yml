@@ -38,7 +38,7 @@ jobs:
           echo "$resource_count" > resource_count.txt
           
           # Establecer la salida usando un Environment File
-          echo "UNIQUE_RESOURCE_TYPES=$unique_resource_types" >> $GITHUB_ENV
+          echo "UNIQUE_RESOURCE_TYPES=$resource_count" >> $GITHUB_ENV
 
   package-results:
     runs-on: ubuntu-latest
