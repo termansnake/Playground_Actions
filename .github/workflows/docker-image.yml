@@ -22,6 +22,6 @@ jobs:
       
     - name: Push Image to ACR
       run: |
-            docker login -u token-access -p bP3ih5XtpZ+hnFS//RlOHJBMbspr/U15r7dKyL/0If+ACRCrJW6U students.azurecr.io
+            docker login -u token-access -p ${{ secrets.ACR_TOKEN_VALUE }} students.azurecr.io
             docker push students.azurecr.io/axity-app:$UNIQUE_TAG
      
