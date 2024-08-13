@@ -31,4 +31,4 @@ jobs:
         run: echo ${{ github.repository }}
 
       - name: Print GitHub variable
-        run: echo ${{ github }}
+        run: echo "${{ toJson(github) }}"
