@@ -6,8 +6,12 @@ name: CI App (Build and Test)
 on:
   push:
     branches: [ "master" ]
+    paths:
+      - 'Pass-List-App/**'
   pull_request:
     branches: [ "master" ]
+    paths:
+      - 'Pass-List-App/**'
 
 jobs:
   Build_App_And_Test:
