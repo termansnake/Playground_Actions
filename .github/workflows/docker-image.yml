@@ -11,15 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Generate unique tag
+      run: echo "UNIQUE_TAG=$(date +%s)" >> $GITHUB_ENV
     - name: Build the Docker image
       run: |
           cd Pass-List-App
-          docker build . --file dockerFile_2 --tag students.azurecr.io/axity-app:$(date +%s)
+          docker build . --file dockerFile_2 --tag students.azurecr.io/axity-app:$UNIQUE_TAG
     - name: Check 4 Image
       run: docker images
       
     - name: Push Image to ACR
       run: |
             docker login -u token-access -p bP3ih5XtpZ+hnFS//RlOHJBMbspr/U15r7dKyL/0If+ACRCrJW6U students.azurecr.io
-            docker push students.azurecr.io/axity-app:$(date +%s)
+            docker push students.azurecr.io/axity-app:$UNIQUE_TAG
      
