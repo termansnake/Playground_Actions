@@ -26,6 +26,7 @@ test('it can store and retrieve items', async () => {
     const items = await db.getItems();
     expect(items.length).toBe(1);
     expect(items[0]).toEqual(ITEM);
+    await db.removeItem(ITEM.id);
 });
 
 test('it can update an existing item', async () => {
