@@ -38,24 +38,28 @@ jobs:
           echo "$resource_count" > resource_count.txt
           
           # Establecer la salida usando un Environment File
-          echo "UNIQUE_RESOURCE_TYPES=$resource_count" >> $GITHUB_ENV
+          echo "UNIQUE_RESOURCE_TYPES=$unique_resource_types" >> $GITHUB_ENV
+
+      - name: Upload resource count artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: resource-count
+          path: resource_count.txt
 
   package-results:
     runs-on: ubuntu-latest
     needs: analyze-terraform  # Este job depende del job anterior
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Create file from environment variable
-        run: |
-          # Tomar el contenido de la variable de entorno y guardarlo en un archivo
-          echo "Número total de tipos de recursos diferentes: ${{ env.UNIQUE_RESOURCE_TYPES }}" > unique_resource_types.txt
+      - name: Download resource count artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: resource-count
+          path: .
 
       - name: Zip the results
         run: |
           # Crear un archivo ZIP con el resultado del análisis
-          zip terraform_analysis.zip unique_resource_types.txt
+          zip terraform_analysis.zip resource_count.txt
           
       - name: Upload artifact
         uses: actions/upload-artifact@v3
