@@ -1,36 +1,20 @@
-# Nombre del workflow. Este es el nombre que verás en la pestaña de Actions en GitHub.
-name: Hello World Workflow
+name: Analyze Terraform Files
 
-# 'on' define los eventos que desencadenan la ejecución del workflow.
-# En este caso, el workflow se ejecutará solo cuando se active manualmente.
 on: 
-  workflow_dispatch:  # Este evento permite ejecutar el workflow de forma manual.
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Permite ejecutar el workflow manualmente
 
-# 'jobs' define los trabajos que se ejecutarán como parte de este workflow.
 jobs:
-  say-hello:  # Nombre del job.
-  
-    # 'runs-on' define el tipo de runner (máquina) que ejecutará este job.
-    # Aquí usamos 'ubuntu-latest', que es una máquina virtual con Ubuntu.
+  analyze-terraform:
     runs-on: ubuntu-latest
-    
-    # 'steps' define los pasos que se ejecutarán dentro de este job.
     steps:
-    
-      # Primer paso: Checkout del código del repositorio.
-      # Esta acción obtiene el código fuente del repositorio para que esté disponible en la máquina.
       - name: Checkout code
-        uses: actions/checkout@v4
-        
-      # Segundo paso: Imprimir "Hello, World!" en la consola.
-      # Aquí simplemente ejecutamos un comando de shell que imprime "Hello, World!".
-      - name: Run Hello World Script
-        run: echo "Hello, World!"
+        uses: actions/checkout@v3
 
-      - name: Print repo name
-        run: ls
-
-      - name: Print GitHub variable
+      - name: Find and count Terraform resources
+        id: count_resources  # Asigna un ID al step para referenciarlo después
         run: |
           # Buscar todos los archivos .tf en el repositorio
           find . -name "*.tf" > tf_files.txt
@@ -49,3 +33,27 @@ jobs:
           unique_resource_types=$(grep -oh -E 'resource "(.*?)"' $(cat tf_files.txt) | sort | uniq | wc -l)
           
           echo "Número total de tipos de recursos diferentes: $unique_resource_types"
+          
+          # Guardar el conteo en un archivo
+          echo "$resource_count" > resource_count.txt
+          
+          # Exportar el número total de tipos de recursos como una salida para usar en otro job
+          echo "::set-output name=unique_resource_types::$unique_resource_types"
+
+  package-results:
+    runs-on: ubuntu-latest
+    needs: analyze-terraform  # Este job depende del job anterior
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Zip the results
+        run: |
+          # Crear un archivo ZIP con el resultado del análisis
+          zip terraform_analysis.zip resource_count.txt
+          
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: terraform-analysis
+          path: terraform_analysis.zip
