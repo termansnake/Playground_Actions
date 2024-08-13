@@ -33,4 +33,6 @@ jobs:
       working-directory: Pass-List-App/app
     - run: sudo yarn test --coverage --coverageDirectory='coverage'
       working-directory: Pass-List-App/app
+    - run: ls
+      working-directory: Pass-List-App/app
  
