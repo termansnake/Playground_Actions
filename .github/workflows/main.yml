@@ -37,8 +37,8 @@ jobs:
           # Guardar el conteo en un archivo
           echo "$resource_count" > resource_count.txt
           
-          # Exportar el número total de tipos de recursos como una salida para usar en otro job
-          echo "::set-output name=unique_resource_types::$unique_resource_types"
+          # Establecer la salida usando un Environment File
+          echo "UNIQUE_RESOURCE_TYPES=$unique_resource_types" >> $GITHUB_ENV
 
   package-results:
     runs-on: ubuntu-latest
